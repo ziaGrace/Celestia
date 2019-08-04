@@ -15,7 +15,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
-   // lazy var myView: SCNView = self.view as! SCNView
     let myScene = SCNScene()
     var sun = Sun(geometry: SCNSphere())
     var earth = Earth(geometry: SCNSphere())
@@ -61,8 +60,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         addNeptune()
         
         sceneView.allowsCameraControl = true
-        //myView.defaultCameraController.interactionMode = .orbitTurntable
-        //myView.defaultCameraController.automaticTarget = true
+        //sceneView.defaultCameraController.interactionMode = .orbitTurntable
+        //sceneView.defaultCameraController.automaticTarget = true
         sceneView.autoenablesDefaultLighting = true
         sceneView.scene = myScene
         
