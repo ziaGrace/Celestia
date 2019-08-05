@@ -11,7 +11,7 @@ import QuartzCore
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -38,17 +38,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     let saturnAnchor = Anchor()
     let uranusAnchor = Anchor()
     let neptuneAnchor = Anchor()
+    let sunAnchor = Anchor()
+ //   let saturnRings = SaturnRings(geometry: SCNTube)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the view's delegate
         sceneView.delegate = self
-        
+        sceneView.session.delegate = self
         
         super.viewDidLoad()
+        sunAnchor.position = SCNVector3(0, 0, -75)
         addCamera()
-        myScene.rootNode.addChildNode(sun)
+        myScene.rootNode.addChildNode(sunAnchor)
+        addSun()
         addLight()
         addEarth()
         addMercury()
@@ -71,9 +75,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.addGestureRecognizer(tapGesture)
         
     }
+    func addSun(){
+        sunAnchor.addChildNode(sun)
+    }
     
     func addMercury() {
-        myScene.rootNode.addChildNode(mercuryAnchor)
+        sunAnchor.addChildNode(mercuryAnchor)
         mercury.radius = 0.45
         mercury.position = SCNVector3(5.5, 0, 0)
         mercuryAnchor.rotateBy = 5.0
@@ -83,7 +90,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func addVenus() {
         
-        myScene.rootNode.addChildNode(venusAnchor)
+        sunAnchor.addChildNode(venusAnchor)
         venus.radius = 0.65
         venus.position = SCNVector3(10, 0, 0)
         venusAnchor.rotateBy = 4.0
@@ -92,7 +99,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addEarth() {
-        myScene.rootNode.addChildNode(earthAnchor)
+        sunAnchor.addChildNode(earthAnchor)
         earth.radius = 1.0
         earth.position = SCNVector3(15, 0, 0)
         earthAnchor.rotateBy = 3.0
@@ -100,7 +107,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addMars() {
-        myScene.rootNode.addChildNode(marsAnchor)
+        sunAnchor.addChildNode(marsAnchor)
         mars.radius = 1.5
         mars.position = SCNVector3(20, 0, 0)
         marsAnchor.rotateBy = 2.0
@@ -109,7 +116,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     func addJupiter() {
-        myScene.rootNode.addChildNode(jupiterAnchor)
+        sunAnchor.addChildNode(jupiterAnchor)
         jupiter.radius = 2.5
         jupiter.position = SCNVector3(25, 0, 0)
         jupiterAnchor.rotateBy = 1.5
@@ -118,7 +125,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     
     func addSaturn() {
-        myScene.rootNode.addChildNode(saturnAnchor)
+        sunAnchor.addChildNode(saturnAnchor)
         saturn.radius = 2
         saturn.position = SCNVector3(30, 0, 0)
         saturnAnchor.rotateBy = 1
@@ -127,7 +134,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func addUranus(){
         
-        myScene.rootNode.addChildNode(uranusAnchor)
+        sunAnchor.addChildNode(uranusAnchor)
         uranus.radius = 1.5
         uranus.position = SCNVector3(35, 0, 0)
         uranusAnchor.rotateBy = 0.5
@@ -137,7 +144,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func addNeptune(){
         
-        myScene.rootNode.addChildNode(neptuneAnchor)
+        sunAnchor.addChildNode(neptuneAnchor)
         neptune.radius = 1
         neptune.position = SCNVector3(40, 0, 0)
         neptuneAnchor.rotateBy = 0.25
@@ -161,6 +168,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         myScene.rootNode.addChildNode(myLightNode)
         
     }
+    
+   
     
     
     
@@ -229,6 +238,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return node
     }
 */
+    
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        // Do something with the new transform
+        print("did update frame")
+        print(frame.camera.transform)
+        sunAnchor.transform = SCNMatrix4(frame.camera.transform)
+    }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user

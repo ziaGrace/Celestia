@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18EB618022F7571A00478C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB617F22F7571A00478C17 /* AppDelegate.swift */; };
-		18EB618222F7571A00478C17 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EB618122F7571A00478C17 /* art.scnassets */; };
 		18EB618422F7571A00478C17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB618322F7571A00478C17 /* ViewController.swift */; };
 		18EB618722F7571A00478C17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EB618522F7571A00478C17 /* Main.storyboard */; };
 		18EB618922F7571E00478C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EB618822F7571E00478C17 /* Assets.xcassets */; };
@@ -26,12 +25,13 @@
 		18EB61AA22F7647100478C17 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB619D22F7647100478C17 /* Sun.swift */; };
 		18EB61AB22F7647100478C17 /* Celestia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB619E22F7647100478C17 /* Celestia.swift */; };
 		18EB61AC22F7647100478C17 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB619F22F7647100478C17 /* Anchor.swift */; };
+		18EB61D022F879D400478C17 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EB61CF22F879D400478C17 /* art.scnassets */; };
+		18EB61D222F87EFA00478C17 /* SaturnRings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EB61D122F87EFA00478C17 /* SaturnRings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18EB617C22F7571A00478C17 /* Celestia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Celestia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EB617F22F7571A00478C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18EB618122F7571A00478C17 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		18EB618322F7571A00478C17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		18EB618622F7571A00478C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18EB618822F7571E00478C17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +50,8 @@
 		18EB619D22F7647100478C17 /* Sun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		18EB619E22F7647100478C17 /* Celestia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Celestia.swift; sourceTree = "<group>"; };
 		18EB619F22F7647100478C17 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
+		18EB61CF22F879D400478C17 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		18EB61D122F87EFA00478C17 /* SaturnRings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaturnRings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				18EB617F22F7571A00478C17 /* AppDelegate.swift */,
-				18EB618122F7571A00478C17 /* art.scnassets */,
 				18EB618322F7571A00478C17 /* ViewController.swift */,
 				18EB619422F7647000478C17 /* Neptune.swift */,
 				18EB619522F7647000478C17 /* Mars.swift */,
@@ -96,10 +97,12 @@
 				18EB619F22F7647100478C17 /* Anchor.swift */,
 				18EB619D22F7647100478C17 /* Sun.swift */,
 				18EB619922F7647000478C17 /* Earth.swift */,
+				18EB61D122F87EFA00478C17 /* SaturnRings.swift */,
 				18EB619822F7647000478C17 /* Planet.swift */,
 				18EB619E22F7647100478C17 /* Celestia.swift */,
 				18EB618522F7571A00478C17 /* Main.storyboard */,
 				18EB618822F7571E00478C17 /* Assets.xcassets */,
+				18EB61CF22F879D400478C17 /* art.scnassets */,
 				18EB618A22F7571E00478C17 /* LaunchScreen.storyboard */,
 				18EB618D22F7571E00478C17 /* Info.plist */,
 			);
@@ -164,8 +167,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18EB618222F7571A00478C17 /* art.scnassets in Resources */,
 				18EB618C22F7571E00478C17 /* LaunchScreen.storyboard in Resources */,
+				18EB61D022F879D400478C17 /* art.scnassets in Resources */,
 				18EB618922F7571E00478C17 /* Assets.xcassets in Resources */,
 				18EB618722F7571A00478C17 /* Main.storyboard in Resources */,
 			);
@@ -190,6 +193,7 @@
 				18EB618022F7571A00478C17 /* AppDelegate.swift in Sources */,
 				18EB61AB22F7647100478C17 /* Celestia.swift in Sources */,
 				18EB61A722F7647100478C17 /* Jupiter.swift in Sources */,
+				18EB61D222F87EFA00478C17 /* SaturnRings.swift in Sources */,
 				18EB61A122F7647100478C17 /* Neptune.swift in Sources */,
 				18EB61A922F7647100478C17 /* Moon.swift in Sources */,
 				18EB61A222F7647100478C17 /* Mars.swift in Sources */,
