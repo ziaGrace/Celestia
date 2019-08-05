@@ -12,6 +12,15 @@ import SceneKit
 class Earth: Planet {
     var earthMoon = Moon(geometry: SCNSphere())
     
+   override var radius: CGFloat  {
+        didSet {
+            self.geometry = SCNSphere(radius: radius)
+            refreshPlanetMaterial()
+            earthMoon.radius = radius*0.2
+            earthMoon.position  = SCNVector3( radius*2, 0, 0)
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -32,7 +41,7 @@ class Earth: Planet {
         
         rotationForce = rotationForeverAction
         
-        //addClouds()
+       // addClouds()
         addMoon()
     }
     
@@ -40,8 +49,8 @@ class Earth: Planet {
         earthMoon.name = "Moon"
         earthMoon.celestialDiffuse = UIImage(named: "moonmap")
         earthMoon.celestialNormal = UIImage(named: "moonbump")
-        earthMoon.radius = self.radius * 0.5
-        earthMoon.position = SCNVector3(2, 0, 0)
+        earthMoon.radius = self.radius 
+        earthMoon.position = SCNVector3( 0.5, 0, 0)
        
        earthMoon.anchor.rotateBy = 5
          self.addChildNode(earthMoon.anchor)

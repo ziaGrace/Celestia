@@ -20,6 +20,7 @@ class Saturn: Planet {
         self.geometry = geometry
         name = "Saturn"
        celestialDiffuse = UIImage(named: "saturnmap")
+        eulerAngles.z = 0.471239
         
         
         

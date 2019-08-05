@@ -15,6 +15,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    let planetProportions = [
+        "Mercury" : 7,
+        "Venus" : 5.5,
+        "Earth" : 5,
+        "Mars" : 6.5,
+        "Jupiter" : 1.5,
+        "Saturn" : 3.5,
+        "Uranus" : 8,
+        "Neptune" : 3.5,
+    ]
+
     let myScene = SCNScene()
     var sun = Sun(geometry: SCNSphere())
     var earth = Earth(geometry: SCNSphere())
@@ -29,8 +40,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     var saturnRings =  SCNScene(named: "art.scnassets/saturnRings.scn")!.rootNode.childNode(withName: "saturnRings", recursively: true)!
     //SaturnRings(geometry: SCNTube(innerRadius: 3,  outerRadius: 4, height: 0.05))
     
-    let myCameraNode = SCNNode()
-    let myLightNode = SCNNode()
+    //let myCameraNode = SCNNode()
+    //let myLightNode = SCNNode()
     var myCloudNode = SCNNode()
     let earthAnchor = Anchor()
     let mercuryAnchor = Anchor()
@@ -54,11 +65,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         
      //   print("xcodeScene =", xcodeScene)
         
-        sunAnchor.position = SCNVector3(0, 0, -75)
-        addCamera()
+        sunAnchor.position = SCNVector3(0, 0, -1)
+        //addCamera()
         myScene.rootNode.addChildNode(sunAnchor)
         addSun()
-        addLight()
+      //  addLight()
         addEarth()
         addMercury()
         addVenus()
@@ -82,12 +93,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     }
     func addSun(){
         sunAnchor.addChildNode(sun)
+        
     }
     
     func addMercury() {
         sun.addChildNode(mercuryAnchor)
-        mercury.radius = 0.45
-        mercury.position = SCNVector3(5.5, 0, 0)
+        mercury.radius = sun.radius / CGFloat(planetProportions["Mercury"]!)
+        mercury.position = SCNVector3(sun.radius*2, 0, 0)
         mercuryAnchor.rotateBy = 5.0
         mercuryAnchor.addChildNode(mercury)
         
@@ -96,8 +108,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     func addVenus() {
         
         sun.addChildNode(venusAnchor)
-        venus.radius = 0.65
-        venus.position = SCNVector3(10, 0, 0)
+        venus.radius = sun.radius / CGFloat(planetProportions["Venus"]!)
+        venus.position = SCNVector3(sun.radius*3, 0, 0)
         venusAnchor.rotateBy = 4.0
         venusAnchor.addChildNode(venus)
         
@@ -105,16 +117,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     func addEarth() {
         sun.addChildNode(earthAnchor)
-        earth.radius = 1.0
-        earth.position = SCNVector3(15, 0, 0)
+        earth.radius = sun.radius / CGFloat(planetProportions["Earth"]!)
+        earth.position = SCNVector3(sun.radius*4, 0, 0)
         earthAnchor.rotateBy = 3.0
         earthAnchor.addChildNode(earth)
     }
     
     func addMars() {
         sun.addChildNode(marsAnchor)
-        mars.radius = 1.5
-        mars.position = SCNVector3(20, 0, 0)
+        mars.radius = sun.radius / CGFloat(planetProportions["Mars"]!)
+        mars.position = SCNVector3(sun.radius*5, 0, 0)
         marsAnchor.rotateBy = 2.0
         marsAnchor.addChildNode(mars)
     }
@@ -122,8 +134,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     func addJupiter() {
         sun.addChildNode(jupiterAnchor)
-        jupiter.radius = 2.5
-        jupiter.position = SCNVector3(25, 0, 0)
+        jupiter.radius = sun.radius / CGFloat(planetProportions["Jupiter"]!)
+        jupiter.position = SCNVector3(sun.radius*6, 0, 0)
         jupiterAnchor.rotateBy = 1.5
         jupiterAnchor.addChildNode(jupiter)
     }
@@ -131,19 +143,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     func addSaturn() {
         sun.addChildNode(saturnAnchor)
-        saturn.radius = 2
-        saturn.position = SCNVector3(30, 0, 0)
+        saturn.radius = sun.radius / CGFloat(planetProportions["Saturn"]!)
+        saturn.position = SCNVector3(sun.radius*7, 0, 0)
         saturnAnchor.rotateBy = 1
         saturnAnchor.addChildNode(saturn)
-        
-      saturnRings.position = SCNVector3(0, 0, 0)
-      saturn.addChildNode(saturnRings)
+      
+       saturnRings.position = SCNVector3(0, 0, 0)
+       saturn.addChildNode(saturnRings)
+    
     }
     func addUranus(){
         
         sun.addChildNode(uranusAnchor)
-        uranus.radius = 1.5
-        uranus.position = SCNVector3(35, 0, 0)
+        uranus.radius = sun.radius / CGFloat(planetProportions["Uranus"]!)
+        uranus.position = SCNVector3(sun.radius*8, 0, 0)
         uranusAnchor.rotateBy = 0.5
         uranusAnchor.addChildNode(uranus)
         
@@ -152,29 +165,29 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     func addNeptune(){
         
         sun.addChildNode(neptuneAnchor)
-        neptune.radius = 1
-        neptune.position = SCNVector3(40, 0, 0)
+        neptune.radius = sun.radius / CGFloat(planetProportions["Neptune"]!)
+        neptune.position = SCNVector3(sun.radius*9, 0, 0)
         neptuneAnchor.rotateBy = 0.25
         neptuneAnchor.addChildNode(neptune)
     }
     
-    func addCamera() {
-        myCameraNode.camera = SCNCamera()
-        myCameraNode.position = SCNVector3(0, 0, 75)
-        myScene.rootNode.addChildNode(myCameraNode)
-        
-    }
+//    func addCamera() {
+//        myCameraNode.camera = SCNCamera()
+//        myCameraNode.position = SCNVector3(0, 0, 75)
+//        myScene.rootNode.addChildNode(myCameraNode)
+//
+//    }
     
     
-    func addLight() {
-        
-        myLightNode.light = SCNLight()
-        myLightNode.light?.type = .omni
-        myLightNode.light?.color = UIColor.white
-        myLightNode.position = SCNVector3(-30, 0, 15)
-        myScene.rootNode.addChildNode(myLightNode)
-        
-    }
+//    func addLight() {
+//
+//        myLightNode.light = SCNLight()
+//        myLightNode.light?.type = .omni
+//        myLightNode.light?.color = UIColor.white
+//        myLightNode.position = SCNVector3(-30, 0, 15)
+//        myScene.rootNode.addChildNode(myLightNode)
+//
+//    }
     
    
     
@@ -193,27 +206,27 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
                 let planet = object as! Planet
                 planet.showInformation()
                 lastPlanetTapped = planet
-                if myCameraNode.parent == object {
-                } else {
-                    SCNTransaction.begin()
-                    SCNTransaction.animationDuration = 2.0
-                    planet.addChildNode(myCameraNode)
-                    let zPosition = planet.radius * 6
-                    myCameraNode.position = SCNVector3(0, 0, zPosition)
-                    sceneView.pointOfView = myCameraNode
-                    SCNTransaction.commit()
-                    
-                    
-                }
+//                if myCameraNode.parent == object {
+//                } else {
+//                    SCNTransaction.begin()
+//                    SCNTransaction.animationDuration = 2.0
+//                    planet.addChildNode(myCameraNode)
+//                    let zPosition = planet.radius * 6
+//                    myCameraNode.position = SCNVector3(0, 0, zPosition)
+//                    sceneView.pointOfView = myCameraNode
+//                    SCNTransaction.commit()
+//
+//
+//                }
             }
         } else {
             lastPlanetTapped.hideInformation()
             SCNTransaction.begin()
             SCNTransaction.animationDuration = 2.0
-            sun.addChildNode(myCameraNode)
-            let zPosition = sun.radius * 6
-            myCameraNode.position = SCNVector3(0, 0, zPosition)
-            sceneView.pointOfView = myCameraNode
+            //sun.addChildNode(myCameraNode)
+           // let zPosition = sun.radius * 6
+           // myCameraNode.position = SCNVector3(0, 0, zPosition)
+            //sceneView.pointOfView = myCameraNode
             SCNTransaction.commit()
         }
         
@@ -250,7 +263,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         // Do something with the new transform
         print("did update frame")
         print(frame.camera.transform)
-        sunAnchor.transform = SCNMatrix4(frame.camera.transform)
+     //   sunAnchor.transform = SCNMatrix4(frame.camera.transform)
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {

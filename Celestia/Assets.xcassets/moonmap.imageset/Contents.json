@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "moonmap1k.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "moommap.jpg",
       "scale" : "2x"
     },
     {

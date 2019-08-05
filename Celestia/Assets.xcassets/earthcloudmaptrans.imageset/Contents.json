@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "earthcloudmaptrans.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "earthcloudmaptrans-1.jpg",
       "scale" : "2x"
     },
     {
