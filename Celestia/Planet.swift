@@ -15,13 +15,13 @@ class Planet: Celestia {
 
      func showInformation(){
         print("Celestia: showInformationCalled")
-        let text = SCNText(string: name, extrusionDepth: 1)
-        add(text: text, celestia: self)
+       
     }
+
     
     func hideInformation(){
         print("Celestia: hideInformationCalled")
-        removeText()
+      
     }
     
    

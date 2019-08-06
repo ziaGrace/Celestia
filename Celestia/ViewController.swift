@@ -11,9 +11,13 @@ import QuartzCore
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
-
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UIGestureRecognizerDelegate {
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var planetTextView: UITextView!
+ 
+    @IBOutlet weak var planetTitleLabel: UILabel!
+    var object: SCNNode?
+    var currentAngleY: Float = 0.0
     
     let planetProportions = [
         "Mercury" : 7,
@@ -53,8 +57,20 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     let neptuneAnchor = Anchor()
     let sunAnchor = Anchor()
     
+
+    //let myView = UIView(frame: rect)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        object = sun
+        planetTextView.layer.cornerRadius = 3;
+        planetTextView.layer.masksToBounds = true;
+        planetTitleLabel.layer.cornerRadius = 3;
+        planetTitleLabel.layer.masksToBounds = true;
+        
+       // let string = "Testing Attributed Strings"
+       // let attributedString = NSMutableAttributedString(string: string)
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -79,16 +95,24 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         addUranus()
         addNeptune()
         
-        sceneView.allowsCameraControl = true
+        //sceneView.allowsCameraControl = true
         //sceneView.defaultCameraController.interactionMode = .orbitTurntable
-        //sceneView.defaultCameraController.automaticTarget = true
+        ////sceneView.defaultCameraController.automaticTarget = true
         sceneView.autoenablesDefaultLighting = true
         sceneView.scene = myScene
         
         // add a tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action:
-            #selector(tap(_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(_:)))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan(_:)))
+        panGesture.delegate = self
+        
+        
         sceneView.addGestureRecognizer(tapGesture)
+        sceneView.addGestureRecognizer(pinchGesture)
+        sceneView.addGestureRecognizer(panGesture)
+        
+        
         
     }
     func addSun(){
@@ -147,13 +171,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         saturn.position = SCNVector3(sun.radius*7, 0, 0)
         saturnAnchor.rotateBy = 1
         saturnAnchor.addChildNode(saturn)
-      
        saturnRings.position = SCNVector3(0, 0, 0)
        saturn.addChildNode(saturnRings)
-    
     }
+    
     func addUranus(){
-        
         sun.addChildNode(uranusAnchor)
         uranus.radius = sun.radius / CGFloat(planetProportions["Uranus"]!)
         uranus.position = SCNVector3(sun.radius*8, 0, 0)
@@ -163,7 +185,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     }
     
     func addNeptune(){
-        
         sun.addChildNode(neptuneAnchor)
         neptune.radius = sun.radius / CGFloat(planetProportions["Neptune"]!)
         neptune.position = SCNVector3(sun.radius*9, 0, 0)
@@ -171,29 +192,55 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         neptuneAnchor.addChildNode(neptune)
     }
     
-//    func addCamera() {
-//        myCameraNode.camera = SCNCamera()
-//        myCameraNode.position = SCNVector3(0, 0, 75)
-//        myScene.rootNode.addChildNode(myCameraNode)
-//
-//    }
+    @objc
+    func didPan(_ gesture: UIPanGestureRecognizer) {
+        print("didPan")
+        guard let _ = object else { return }
+        let translation = gesture.translation(in: gesture.view)
+        var newAngleY = (Float)(translation.x)*(Float)(Double.pi)/180.0
+        
+        newAngleY += currentAngleY
+        object?.eulerAngles.y = newAngleY
+        
+        if gesture.state == .ended{
+            currentAngleY = newAngleY
+        }
+    }
     
-    
-//    func addLight() {
-//
-//        myLightNode.light = SCNLight()
-//        myLightNode.light?.type = .omni
-//        myLightNode.light?.color = UIColor.white
-//        myLightNode.position = SCNVector3(-30, 0, 15)
-//        myScene.rootNode.addChildNode(myLightNode)
-//
-//    }
-    
-   
-    
-    
-    
-    @objc func tap(_ gestureRecognize: UIGestureRecognizer) {
+    @objc
+    func didPinch(_ gesture: UIPinchGestureRecognizer) {
+        print("did pinch")
+        guard let _ = object else { return }
+        var originalScale = object?.scale
+        
+        switch gesture.state {
+        case .began:
+            originalScale = object?.scale
+            gesture.scale = CGFloat((object?.scale.x)!)
+        case .changed:
+            guard var newScale = originalScale else { return }
+            if gesture.scale < 0.5{ newScale = SCNVector3(x: 0.5, y: 0.5, z: 0.5) }else if gesture.scale > 2{
+                newScale = SCNVector3(2, 2, 2)
+            }else{
+                newScale = SCNVector3(gesture.scale, gesture.scale, gesture.scale)
+            }
+            object?.scale = newScale
+        case .ended:
+            guard var newScale = originalScale else { return }
+            if gesture.scale < 0.5{ newScale = SCNVector3(x: 0.5, y: 0.5, z: 0.5) }else if gesture.scale > 2{
+                newScale = SCNVector3(2, 2, 2)
+            }else{
+                newScale = SCNVector3(gesture.scale, gesture.scale, gesture.scale)
+            }
+            object?.scale = newScale
+            gesture.scale = CGFloat((object?.scale.x)!)
+        default:
+            gesture.scale = 1.0
+            originalScale = nil
+        }
+    }
+
+    @objc func didTap(_ gestureRecognize: UIGestureRecognizer) {
         // check what nodes are tapped
         let p = gestureRecognize.location(in: sceneView)
         let hitResults = sceneView.hitTest(p, options: [:])
@@ -204,32 +251,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             
             if object is Planet {
                 let planet = object as! Planet
-                planet.showInformation()
                 lastPlanetTapped = planet
-//                if myCameraNode.parent == object {
-//                } else {
-//                    SCNTransaction.begin()
-//                    SCNTransaction.animationDuration = 2.0
-//                    planet.addChildNode(myCameraNode)
-//                    let zPosition = planet.radius * 6
-//                    myCameraNode.position = SCNVector3(0, 0, zPosition)
-//                    sceneView.pointOfView = myCameraNode
-//                    SCNTransaction.commit()
-//
-//
-//                }
+                planetTextView.text = planet.information
+                planetTitleLabel.text = planet.name
+            
             }
-        } else {
-            lastPlanetTapped.hideInformation()
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 2.0
-            //sun.addChildNode(myCameraNode)
-           // let zPosition = sun.radius * 6
-           // myCameraNode.position = SCNVector3(0, 0, zPosition)
-            //sceneView.pointOfView = myCameraNode
-            SCNTransaction.commit()
         }
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -245,13 +272,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
-        sceneView.session.pause()
+    sceneView.session.pause()
     }
 
     // MARK: - ARSCNViewDelegate
     
 /*
-    // Override to create and configure nodes for anchors added to the view's session.
+//Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
      
@@ -261,8 +288,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         // Do something with the new transform
-        print("did update frame")
-        print(frame.camera.transform)
+//        print("did update frame")
+//        print(frame.camera.transform)
      //   sunAnchor.transform = SCNMatrix4(frame.camera.transform)
     }
     
