@@ -20,12 +20,11 @@ class Mars: Planet {
         self.geometry = geometry
         name = "Mars"
         information = """
-          Mars
-          Surface area 144798500 km2
-          Volume    1.6318×1011 km3
-          Mass    6.4171×1023 kg
-          Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war, and is often referred to as the "Red Planet"because the iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye. Mars is a terrestrial planet with a thin atmosphere, having surface features reminiscent both of the impact craters of the Moon and the valleys, deserts, and polar ice caps of Earth.
-          """
+Surface area: 144798500 km²
+Volume:    1.6318×1011 km³
+Mass:    6.4171×1023 kg
+Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System after Mercury. In English, Mars carries a name of the Roman god of war, and is often referred to as the "Red Planet"because the iron oxide prevalent on its surface gives it a reddish appearance that is distinctive among the astronomical bodies visible to the naked eye. Mars is a terrestrial planet with a thin atmosphere, having surface features reminiscent both of the impact craters of the Moon and the valleys, deserts, and polar ice caps of Earth.
+"""
         celestialDiffuse = UIImage(named: "marsmap")
         celestialNormal = UIImage(named: "marsnormal")
         

@@ -20,10 +20,9 @@ class Saturn: Planet {
         self.geometry = geometry
         name = "Saturn"
         information = """
-Saturn
-Surface area 4.27×1010 km2
-Volume 8.2713×1014 km3
-Mass 5.6834×1026 kg
+Surface area: 4.27×1010 km²
+Volume: 8.2713×1014 km³
+Mass: 5.6834×1026 kg
         Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius about nine times that of Earth. It has only one-eighth the average density of Earth, but with its larger volume Saturn is over 95 times more massive. Saturn is named after the Roman god of agriculture; its astronomical symbol (♄) represents the god's sickle.
 """
        celestialDiffuse = UIImage(named: "saturnmap")

@@ -24,14 +24,14 @@
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </arscnView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV6-x8-XIB">
-                                <rect key="frame" x="0.0" y="594" width="414" height="268"/>
+                                <rect key="frame" x="0.0" y="712" width="414" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="268" id="mow-ud-HLi"/>
+                                    <constraint firstAttribute="height" constant="150" id="ifI-7F-Pdl"/>
                                 </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Welcome to Celestia! You can walk around the planets and explore the solar system, pinch, zoom and pan to get a better view of the planets just double tap anywhere in the room to reset the view. Tap on a Planet to find out information about it. Have Fun!                                                      </string>
+                                        <string key="content">Welcome to Celestia! You can walk around the planets and explore the solar system, pinch, zoom and pan to get a better view of the planets. Tap on a Planet to find out information about it. Have Fun!                                                      </string>
                                         <attributes>
                                             <color key="NSColor" red="0.0011921902729787595" green="0.04357475553688004" blue="0.26052985575989851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="17" name="AmericanTypewriter"/>
@@ -41,7 +41,7 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fL-zq-xCm">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="middleTruncation" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="0fL-zq-xCm">
                                 <rect key="frame" x="157" y="44" width="100" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="0.58251284246575341" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -51,7 +51,7 @@
                                     <fragment content="Celestia">
                                         <attributes>
                                             <font key="NSFont" size="17" name="AmericanTypewriter-Semibold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -62,11 +62,12 @@
                         <constraints>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="DV6-x8-XIB" secondAttribute="bottom" id="5RX-cF-F2q"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="BYM-dG-Sjb"/>
-                            <constraint firstItem="DV6-x8-XIB" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="FIq-Ah-8Zi"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="U0K-SW-4ec" secondAttribute="leading" id="Rw6-Jn-YV4"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="TZC-Ue-U59"/>
+                            <constraint firstItem="DV6-x8-XIB" firstAttribute="bottom" secondItem="fQZ-KI-GVf" secondAttribute="bottom" id="bGH-tt-TC0"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="DV6-x8-XIB" secondAttribute="bottom" id="hlV-Hy-T3a"/>
                             <constraint firstItem="0fL-zq-xCm" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" id="jgZ-yb-XCH"/>
+                            <constraint firstItem="DV6-x8-XIB" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="mpc-7G-jKQ"/>
                             <constraint firstItem="0fL-zq-xCm" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="157" id="nha-8K-wUB"/>
                             <constraint firstAttribute="trailing" secondItem="BrB-h1-WRS" secondAttribute="trailing" id="p1X-8i-Zpf"/>
                             <constraint firstItem="0fL-zq-xCm" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" constant="-157" id="qQf-vW-xEE"/>

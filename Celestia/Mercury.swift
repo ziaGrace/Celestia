@@ -20,10 +20,9 @@ class Mercury: Planet {
         self.geometry = geometry
         name = "Mercury"
         information = """
-Mercury
-Surface area 7.48×107 km2
-Volume 6.083×1010 km3
-Mass 3.3011×1023 kg
+Surface area: 7.48×107 km²
+Volume: 6.083×1010 km³
+Mass: 3.3011×1023 kg
 Mercury is the smallest and innermost planet in the Solar System. Its orbital period around the Sun of 87.97 days is the shortest of all the planets in the Solar System. It is named after the Roman deity Mercury, the messenger of the gods.
 """
         celestialDiffuse = UIImage(named: "mercurymap")

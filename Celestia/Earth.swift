@@ -30,13 +30,12 @@ class Earth: Planet {
         self.geometry = geometry
         name = "Earth"
         information = """
-Earth
-Surface area
-510072000 km2 total
-148940000 km2 land ( 29.2%)
-361132000 km2 water (70.8%)
-Volume    1.08321×1012 km3
-Mass    5.97237×1024 kg
+Surface area:
+﹒510072000 km² total
+﹒148940000 km² land ( 29.2%)
+﹒361132000 km² water (70.8%)
+Volume:   1.08321×1012 km³
+Mass:   5.97237×1024 kg
 Earth is the third planet from the Sun and the only astronomical object known to harbor life. According to radiometric dating and other sources of evidence, Earth formed over 4.5 billion years ago. Earth's gravity interacts with other objects in space, especially the Sun and the Moon, Earth's only natural satellite. Earth orbits around the Sun in 365.26 days, a period known as an Earth year. During this time, Earth rotates about its axis about 366.26 times.
 """
         celestialDiffuse = UIImage(named: "earthmap")

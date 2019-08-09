@@ -63,6 +63,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        planetTextView.frame.size.height = planetTextView.contentSize.height;
         object = sun
         planetTextView.layer.cornerRadius = 3;
         planetTextView.layer.masksToBounds = true;
@@ -123,7 +124,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     func addMercury() {
         sun.addChildNode(mercuryAnchor)
         mercury.radius = sun.radius / CGFloat(planetProportions["Mercury"]!)
-        mercury.position = SCNVector3(sun.radius*2, 0, 0)
+        mercury.position = SCNVector3((sun.radius*2)+(mercury.radius*2), 0, 0)
         mercuryAnchor.rotateBy = 5.0
         mercuryAnchor.addChildNode(mercury)
         
@@ -252,9 +253,19 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
             if object is Planet {
                 let planet = object as! Planet
                 lastPlanetTapped = planet
-                planetTextView.text = planet.information
-                planetTitleLabel.text = planet.name
-            
+              
+//                UIView.animate(withDuration: 1.0, animations: {
+//                    self.planetTitleLabel.alpha = 0.0
+//                    self.planetTextView.alpha = 0.0
+//                    })
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.planetTextView.text = planet.information
+                    self.planetTitleLabel.text = planet.name
+                    self.planetTextView.frame.size.height = self.planetTextView.contentSize.height;
+                    self.planetTitleLabel.alpha = 1.0
+                    self.planetTextView.alpha = 1.0
+                })
             }
         }
     }
