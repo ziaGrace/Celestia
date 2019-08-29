@@ -27,6 +27,7 @@ Venus is the second planet from the Sun, orbiting it every 224.7 Earth days. It 
 """
         celestialDiffuse = UIImage(named: "venusmap")
         celestialNormal = UIImage(named: "venusnormal")
+        eulerAngles.z = 3.0962141
       
         
         

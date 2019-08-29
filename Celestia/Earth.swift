@@ -42,6 +42,9 @@ Earth is the third planet from the Sun and the only astronomical object known to
         celestialNormal = UIImage(named: "earthnormal")
         celestialSpecular =  UIImage(named: "earthspec")
         celestialEmmission = UIImage(named: "earthlights")
+        eulerAngles.z = 0.4101524
+        
+
         
         
         let rotationAction = SCNAction.rotate(by: 2.0, around: SCNVector3(0, 1, 0), duration: 10)

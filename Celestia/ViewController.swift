@@ -134,7 +134,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         
         sun.addChildNode(venusAnchor)
         venus.radius = sun.radius / CGFloat(planetProportions["Venus"]!)
-        venus.position = SCNVector3(sun.radius*3, 0, 0)
+        venus.position = SCNVector3((sun.radius*3)+(venus.radius*2), 0, 0)
         venusAnchor.rotateBy = 4.0
         venusAnchor.addChildNode(venus)
         
@@ -143,7 +143,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     func addEarth() {
         sun.addChildNode(earthAnchor)
         earth.radius = sun.radius / CGFloat(planetProportions["Earth"]!)
-        earth.position = SCNVector3(sun.radius*4, 0, 0)
+        earth.position = SCNVector3((sun.radius*4)+(earth.radius*2), 0, 0)
         earthAnchor.rotateBy = 3.0
         earthAnchor.addChildNode(earth)
     }
@@ -151,7 +151,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     func addMars() {
         sun.addChildNode(marsAnchor)
         mars.radius = sun.radius / CGFloat(planetProportions["Mars"]!)
-        mars.position = SCNVector3(sun.radius*5, 0, 0)
+        mars.position = SCNVector3((sun.radius*5)+(mars.radius*2), 0, 0)
         marsAnchor.rotateBy = 2.0
         marsAnchor.addChildNode(mars)
     }
@@ -160,7 +160,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     func addJupiter() {
         sun.addChildNode(jupiterAnchor)
         jupiter.radius = sun.radius / CGFloat(planetProportions["Jupiter"]!)
-        jupiter.position = SCNVector3(sun.radius*6, 0, 0)
+        jupiter.position = SCNVector3((sun.radius*6)+(jupiter.radius*2), 0, 0)
         jupiterAnchor.rotateBy = 1.5
         jupiterAnchor.addChildNode(jupiter)
     }
@@ -169,7 +169,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     func addSaturn() {
         sun.addChildNode(saturnAnchor)
         saturn.radius = sun.radius / CGFloat(planetProportions["Saturn"]!)
-        saturn.position = SCNVector3(sun.radius*7, 0, 0)
+        saturn.position = SCNVector3((sun.radius*7)+(saturn.radius*9), 0, 0)
         saturnAnchor.rotateBy = 1
         saturnAnchor.addChildNode(saturn)
        saturnRings.position = SCNVector3(0, 0, 0)
@@ -179,7 +179,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     func addUranus(){
         sun.addChildNode(uranusAnchor)
         uranus.radius = sun.radius / CGFloat(planetProportions["Uranus"]!)
-        uranus.position = SCNVector3(sun.radius*8, 0, 0)
+        uranus.position = SCNVector3((sun.radius*8)+(uranus.radius*5), 0, 0)
         uranusAnchor.rotateBy = 0.5
         uranusAnchor.addChildNode(uranus)
         
@@ -188,7 +188,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
     func addNeptune(){
         sun.addChildNode(neptuneAnchor)
         neptune.radius = sun.radius / CGFloat(planetProportions["Neptune"]!)
-        neptune.position = SCNVector3(sun.radius*9, 0, 0)
+        neptune.position = SCNVector3((sun.radius*9)+(neptune.radius*3), 0, 0)
         neptuneAnchor.rotateBy = 0.25
         neptuneAnchor.addChildNode(neptune)
     }
@@ -274,7 +274,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, UI
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }

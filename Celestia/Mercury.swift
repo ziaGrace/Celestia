@@ -27,6 +27,7 @@ Mercury is the smallest and innermost planet in the Solar System. Its orbital pe
 """
         celestialDiffuse = UIImage(named: "mercurymap")
         celestialNormal = UIImage(named: "mercurybump")
+        eulerAngles.z = 0.03682645
        
         
         

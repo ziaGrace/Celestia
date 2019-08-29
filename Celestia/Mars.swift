@@ -27,6 +27,7 @@ Mars is the fourth planet from the Sun and the second-smallest planet in the Sol
 """
         celestialDiffuse = UIImage(named: "marsmap")
         celestialNormal = UIImage(named: "marsnormal")
+        eulerAngles.z = 0.436332
         
         
         
